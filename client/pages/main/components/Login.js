@@ -39,10 +39,17 @@ class Option extends React.Component {
 
     login(e) {
         e.preventDefault();
-        this.props.login({
+        const self = this;
+        actions.session.sessionPost({
             type: "email",
             uid: this.state.id,
             secret: this.state.pw
+        }, function (status, data) {
+            if (status == 200) {
+                self.props.login(data);
+            } else {
+                console.log(status, data);
+            }
         });
     }
 }

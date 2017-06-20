@@ -7,9 +7,8 @@ const sessionManagerInitialState = {
 const sessionManager = (state = sessionManagerInitialState, action) => {
     switch(action.type) {
         case session.LOGIN:
-            console.log(action.body);
             return Object.assign({}, state, {
-
+                session: action.session
             });
         case session.LOGOUT:
             return Object.assign({}, state, {

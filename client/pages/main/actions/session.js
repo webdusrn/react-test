@@ -1,10 +1,21 @@
+import axios from 'axios';
+
+const URL = '/api/accounts/session';
 const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
 
-function login(body) {
+function sessionPost (body, callback) {
+    axios.post(URL, body).then(function (data) {
+        callback(data.status, data.data);
+    }).catch(function (error) {
+        callback(400, error);
+    });
+}
+
+function login(session) {
     return {
         type: LOGIN,
-        body: body
+        session: session
     };
 }
 
@@ -18,5 +29,6 @@ export default {
     LOGIN: LOGIN,
     LOGOUT: LOGOUT,
     login: login,
-    logout: logout
+    logout: logout,
+    sessionPost: sessionPost
 };
