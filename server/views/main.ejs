@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="<%= params.language %>">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel="icon" type="image/png" href="/pages/main/assets/images/favi.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="/pages/main/assets/images/favi.png" sizes="16x16"/>
+    <base href="/">
+    <title>react</title>
+
+    <script type="text/javascript">
+        window.meta = <%- JSON.stringify(params.meta || {}) %>;
+        window.session = <%- JSON.stringify(params.session || {}) %>;
+        window.oauth = <%- JSON.stringify(params.oauth || {}) %>;
+    </script>
+    <!-- inject:css -->
+    <!-- endinject -->
+</head>
+<body>
+<div id="root"></div>
+<script src="https://cdn1.slogup.com/jquery/3.1.0/jquery.min.js"></script>
+<!-- inject:js -->
+<!-- endinject -->
+</body>
+</html>
