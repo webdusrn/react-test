@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import actions from '../actions';
 
 class Login extends React.Component {
@@ -16,8 +17,13 @@ class Login extends React.Component {
     }
 
     render() {
+        let redirect = null;
+        if (this.props.session.id) {
+            redirect = <Redirect to="/"/>;
+        }
         return (
             <div>
+                { redirect }
                 <form onSubmit={ this.login }>
                     <input type="email" name="id" value={ this.state.id } onChange={ this.onChangeInput }/>
                     <input type="password" name="pw" value={ this.state.pw } onChange={ this.onChangeInput }/>
@@ -47,12 +53,18 @@ class Login extends React.Component {
     }
 }
 
+let mapStateToProps = (state) => {
+    return {
+        session: state.session.session
+    };
+};
+
 let mapDispatchToProps = (dispatch) => {
     return {
         login: (value) => actions.session.login(dispatch, value)
     };
 };
 
-Login = connect(undefined, mapDispatchToProps)(Login);
+Login = connect(mapStateToProps, mapDispatchToProps)(Login);
 
 export default Login;

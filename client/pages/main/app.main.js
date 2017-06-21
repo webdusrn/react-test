@@ -4,7 +4,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider  } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 import reducers from './reducers';
+import RouteConfig from './services/RouteConfig';
 
 const store = createStore(reducers);
 const appElement = document.getElementById('root');
@@ -17,7 +20,7 @@ class App extends React.Component {
         return (
             <div style={ {textAlign: 'center'} }>
                 <Header/>
-                <Login/>
+                <RouteConfig />
             </div>
         );
     }
@@ -25,7 +28,9 @@ class App extends React.Component {
 
 ReactDOM.render(
     <Provider store = {store}>
-        <App />
+        <Router>
+            <App />
+        </Router>
     </Provider>,
     appElement
 );
