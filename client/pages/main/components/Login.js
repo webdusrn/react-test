@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions';
 
-class Option extends React.Component {
+class Login extends React.Component {
     constructor(props) {
         super(props);
 
@@ -39,27 +39,20 @@ class Option extends React.Component {
 
     login(e) {
         e.preventDefault();
-        const self = this;
-        actions.session.sessionPost({
+        this.props.login({
             type: "email",
             uid: this.state.id,
             secret: this.state.pw
-        }, function (status, data) {
-            if (status == 200) {
-                self.props.login(data);
-            } else {
-                console.log(status, data);
-            }
         });
     }
 }
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        login: (value) => dispatch(actions.session.login(value))
+        login: (value) => actions.session.login(dispatch, value)
     };
 };
 
-Option = connect(undefined, mapDispatchToProps)(Option);
+Login = connect(undefined, mapDispatchToProps)(Login);
 
-export default Option;
+export default Login;
